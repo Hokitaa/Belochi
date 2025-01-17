@@ -15,18 +15,17 @@ include "ASSETS/db/database.php";
 <div class="product-list" id="productList"></div>
 
 <script>
-    const products = [
-        { name: 'Hatten Aga White', price: 250000, img: 'ASSETS/images/aga white.jpg' },
-        { name: 'Hatten Aga Rose', price: 300000, img: 'ASSETS/images/aga rose.jpg' },
-        { name: 'Hatten Sweet Alexandria', price: 350000, img: 'ASSETS/images/Hatten Sweet Alexandria.png' },
-        { name: 'Two Island Chardonnay', price: 275000, img: 'ASSETS/images/Two Island Chardonnay.jpg' },
-        { name: 'Two Island Sauvignon Blanc', price: 275000, img: 'ASSETS/images/Two Island Sauvignon Black.png' },
-        { name: 'Two Island Reserve Cabernet Sauvignon', price: 300000, img: 'ASSETS/images/Two Island Reserve Cabernet Sauvignon.png' },
-        { name: 'Two Island Rose', price: 300000, img: 'ASSETS/images/aga rose.jpg' },
-        { name: 'G7 Merlot', price: 250000, img: 'ASSETS/images/G7 Merlot.png' },
-        { name: 'Tunjung Brut Sparkling', price: 375000, img: 'ASSETS/images/tunjung brut.jpg' },
-        { name: 'Hatten Sparkling Rose', price: 300000, img: 'ASSETS/images/sparkling rose.jpg' }
-    ];
+   <script>
+    <div id="shop">
+        <h1>Shop Our Wines</h1>
+        <div class="products">
+            <?php while ($row = $result->fetch_assoc()): ?>
+                <div class="product">
+                    <img src="<?php echo $row['image_url']; ?>" alt="<?php echo $row['name']; ?>">
+                    <p><?php echo $row['name']; ?> - $<?php echo $row['price']; ?></p>
+                    <button onclick="addToCart(<?php echo $row['id']; ?>, '<?php echo $row['name']; ?>', <?php echo $row['price']; ?>)">Add to Cart</button>
+                </div>
+            <?php endwhile; 
 
     function loadProducts(products) {
         const productList = document.getElementById('productList');
